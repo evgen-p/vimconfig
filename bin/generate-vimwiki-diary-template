@@ -1,0 +1,15 @@
+#!/usr/bin/python
+import sys
+import datetime
+
+template = """= {subject} =
+
+== What was done: ==
+"""
+date = datetime.datetime.today()
+if (int(date.strftime("%H")) > 18):
+    date = date + datetime.timedelta(days = 1)
+yesterday = date - datetime.timedelta(days = 1)
+yesterday = yesterday.strftime("%d")
+subject = (date.strftime("(techops) Hand-off | %Y-%m-({yesterday},%d)".format(yesterday=yesterday)))
+print(template.format(subject=subject))
